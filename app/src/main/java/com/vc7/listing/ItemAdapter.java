@@ -16,14 +16,14 @@ import java.util.ArrayList;
 public class ItemAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater layoutInflater = null;
-    private ArrayList<String> itemList;
+    private ArrayList<Item> itemList;
 
     public ItemAdapter(Context context) {
         this.context = context;
         this.layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setItemList(ArrayList<String> itemList) {
+    public void setItemList(ArrayList<Item> itemList) {
         this.itemList = itemList;
     }
 
@@ -52,6 +52,10 @@ public class ItemAdapter extends BaseAdapter {
             viewHolder.headerTextView = (TextView)convertView.findViewById(R.id.headerTextView);
             viewHolder.titleTextView = (TextView)convertView.findViewById(R.id.titleTextView);
         }
+
+        Item item = this.itemList.get(position);
+        viewHolder.headerTextView.setText(item.getHeader());
+        viewHolder.titleTextView.setText(item.getTitle());
 
         return convertView;
     }

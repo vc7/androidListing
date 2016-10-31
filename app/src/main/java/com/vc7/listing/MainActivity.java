@@ -20,13 +20,17 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    ArrayList<String> listItems = new ArrayList<String>();
+    ArrayList<Item> listItems = new ArrayList<Item>();
     ItemAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.listItems.add(new Item("2016/10/20", "陰天 - 鋼筆繪日記"));
+        this.listItems.add(new Item("2016/10/12", "下雨天 - 鋼筆繪日記"));
+        this.listItems.add(new Item("2016/09/23", "吃太飽了 - 鋼筆繪日記"));
 
         ListView listView = (ListView)findViewById(R.id.listView);
         listAdapter = new ItemAdapter(this);
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addItem(View view) {
-        listItems.add("clicked");
-        listAdapter.notifyDataSetChanged();
+        //listItems.add("clicked");
+        //listAdapter.notifyDataSetChanged();
     }
 }
