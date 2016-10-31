@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     ArrayList<String> listItems = new ArrayList<String>();
-    ArrayAdapter<String> listAdapter;
+    ItemAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView listView = (ListView)findViewById(R.id.listView);
-        listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listItems);
+        listAdapter = new ItemAdapter(this);
+        listAdapter.setItemList(this.listItems);
 
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(listener);
