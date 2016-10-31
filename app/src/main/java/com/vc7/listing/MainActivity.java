@@ -6,7 +6,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,16 +20,24 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    ArrayList<String> listItems = new ArrayList<String>();
+    ArrayAdapter<String> listAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ListView listView = (ListView)findViewById(R.id.listView);
-        ArrayAdapter listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new String[]{"a", "b", "c"});
+        listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
 
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(listener);
 
+    }
+
+    public void addItem(View view) {
+        listItems.add("clicked");
+        listAdapter.notifyDataSetChanged();
     }
 }
