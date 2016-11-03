@@ -33,7 +33,7 @@ public class ItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Item getItem(int position) {
         return itemList.get(position);
     }
 
@@ -45,15 +45,20 @@ public class ItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
-        viewHolder = new ViewHolder();
 
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.layout_item,parent,false);
+
+            viewHolder = new ViewHolder();
             viewHolder.headerTextView = (TextView)convertView.findViewById(R.id.headerTextView);
             viewHolder.titleTextView = (TextView)convertView.findViewById(R.id.titleTextView);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Item item = this.itemList.get(position);
+        final Item item = getItem(position);
         viewHolder.headerTextView.setText(item.getHeader());
         viewHolder.titleTextView.setText(item.getTitle());
 
