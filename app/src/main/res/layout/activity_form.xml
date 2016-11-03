@@ -19,17 +19,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Title"
+            android:text=""
+            android:hint="Header"
             android:ems="10"
-            android:id="@+id/titleEditText" />
+            android:id="@+id/headerEditText" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Header"
+            android:text=""
+            android:hint="Title"
             android:ems="10"
-            android:id="@+id/headerEditText" />
+            android:id="@+id/titleEditText" />
 
         <Button
             android:text="Submit"
