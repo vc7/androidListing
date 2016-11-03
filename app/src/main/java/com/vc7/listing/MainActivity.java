@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Item> listItems = new ArrayList<Item>();
     ItemAdapter listAdapter;
+    Intent formIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 1:
+                switch (resultCode) {
+                    case RESULT_OK:
+                        String title = data.getStringExtra("title");
+                        String header = data.getStringExtra("header");
+
+                        Item item = new Item(header, title);
+                        listItems.add(0, item);
+                        listAdapter.notifyDataSetChanged();
+                        break;
+                    default:
+                        break;
+                }
+            default:
+                break;
+        }
+    }
+
     public void addItem(View view) {
-        Intent intent = new Intent(this, FormActivity.class);
-        startActivity(intent);
+        formIntent = new Intent(this, FormActivity.class);
+        startActivityForResult(formIntent, 1);
     }
 }
